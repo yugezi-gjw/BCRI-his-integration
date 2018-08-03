@@ -20,7 +20,7 @@ public class Application extends io.dropwizard.Application<Configuration> {
         try {
             new Application().run("server", getHost(args));
         } catch (Exception e) {
-            log.error("Application Exception: {}", e.getMessage());
+            log.error("Application Exception: {}", e);
         }
     }
 
