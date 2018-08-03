@@ -1,0 +1,66 @@
+server:
+  type: default
+  applicationConnectors:
+    - type: http
+      port: 55150
+  adminConnectors:
+    - type: http
+      port: 55151
+  requestLog:
+      type: classic
+      appenders:
+         - type: file
+           currentLogFilename: log/request.log
+           threshold: INFO
+           archive: true
+           maxFileSize: 50000K
+           archivedFileCount: 20
+           archivedLogFilenamePattern: log/request-%d-%i.log
+logging:
+  level: DEBUG
+  loggers:
+    "com.varian.oiscn":
+      level: INFO
+      additive: true
+      appenders:
+        - type: console
+          threshold: INFO
+        - type: file
+          currentLogFilename: log/oiscn.log
+          archive: true
+          maxFileSize: 50000K
+          archivedFileCount: 10
+          archivedLogFilenamePattern: log/oiscn-%d-%i.log
+  appenders:
+    - type: console
+      threshold: DEBUG
+    - type: file
+      currentLogFilename: log/service.log
+      threshold: DEBUG
+      archive: true
+      maxFileSize: 50000K
+      archivedLogFilenamePattern: log/service-%d-%i.log
+      archivedFileCount: 10
+      logFormat: " {%n
+                      \"logger\":\"%logger\",%n
+                      \"timestamp\":\"%d{HH:mm:ss.SSS}\",%n
+                      \"level\":\"%level\",%n
+                      \"thread\":\"%thread\",%n
+                      \"message\":\"%msg\",%n
+                      \"throwable\":\"%throwable\"%n
+                    },%n"
+#database:
+#    driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    databaseServer: 10.120.168.222
+#    port: 1433
+#    database: Qin
+#    username: 2Ji75KA2qBcJxEkwv3SCeQ==
+#    password: PDrJ/9I/gxxEm4lm4pbmOQ==
+#    maxTotal: 100
+#    initialSize: 20
+#    maxIdle: 20
+#    minIdle: 10
+#    maxWaitMillis: 5000
+#    timeBetweenEvictionRunsMillis: 603000
+#    minEvictableIdleTimeMillis:  1800000
+#fhirServerBaseUri: http://10.120.168.222:8000
